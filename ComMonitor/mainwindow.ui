@@ -335,7 +335,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -350,6 +350,11 @@
         <widget class="QWidget" name="tab_2">
          <attribute name="title">
           <string>常用协议</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tab_3">
+         <attribute name="title">
+          <string>常用工具</string>
          </attribute>
         </widget>
        </widget>
@@ -498,7 +503,27 @@
     <addaction name="actionsaver"/>
     <addaction name="actionSave_as"/>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionASIIC"/>
+    <addaction name="actionHex"/>
+    <addaction name="actionZTE_V1"/>
+    <addaction name="actionZTE_V2"/>
+    <addaction name="actionHJ212"/>
+    <addaction name="actionHJ212_2017"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionAbout"/>
+   </widget>
    <addaction name="menufile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -522,6 +547,46 @@
   <action name="actionSave_as">
    <property name="text">
     <string>Save as</string>
+   </property>
+  </action>
+  <action name="actionASIIC">
+   <property name="text">
+    <string>ASIIC</string>
+   </property>
+  </action>
+  <action name="actionHex">
+   <property name="text">
+    <string>Hex</string>
+   </property>
+  </action>
+  <action name="actionZTE_V1">
+   <property name="text">
+    <string>ZTE_V1</string>
+   </property>
+  </action>
+  <action name="actionZTE_V2">
+   <property name="text">
+    <string>ZTE_V2</string>
+   </property>
+  </action>
+  <action name="actionHJ212">
+   <property name="text">
+    <string>HJ212</string>
+   </property>
+  </action>
+  <action name="actionHJ212_2017">
+   <property name="text">
+    <string>HJ212_2017</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>
