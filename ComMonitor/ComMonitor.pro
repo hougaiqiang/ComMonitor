@@ -5,9 +5,9 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
 TARGET = ComMonitor
 TEMPLATE = app
 
@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    driver/myserial.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    driver/myserial.h
 
 FORMS += \
         mainwindow.ui
