@@ -83,6 +83,7 @@ bool Open_Serial(SERIAL *stSerial)
     if(serialport->open(QIODevice::ReadWrite))
     {
         //打开成功
+        //connect(serialport,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
         return true;
     }
     else
@@ -125,4 +126,31 @@ QStringList get_port_Name_list()
     return ComList;
 }
 
+/****************************************************************
+*发送数据
+*
+*****************************************************************/
+bool Send_by_Serial(const char *data, int len)
+{
+    if(!serialport->isOpen())
+    {
+        //串口未打开
+        return false;
+    }
+    serialport->write(data, len);
+    return true;
+}
 
+/****************************************************************
+*接收数据
+*串口接收数据完毕自动调用此函数
+*****************************************************************/
+void receiveInfo()
+{
+
+    QByteArray Rcv_Data;
+    Rcv_Data = serialport->readAll();
+    //处理串口数据
+
+
+}

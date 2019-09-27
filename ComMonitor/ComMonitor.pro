@@ -26,11 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    driver/myserial.cpp
+    driver/myserial.cpp \
+    tools/tools.cpp
 
 HEADERS += \
         mainwindow.h \
-    driver/myserial.h
+    driver/myserial.h \
+    tools/tools.h
 
 FORMS += \
         mainwindow.ui
