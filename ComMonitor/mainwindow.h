@@ -22,6 +22,11 @@ private slots:
 
     void on_pushButton_Open_COM_clicked();
 
+    void on_lineEdit_Int_textEdited(const QString &arg1);
+
+    void on_lineEdit_Hex_textEdited(const QString &arg1);
+
+    void on_lineEdit_Bit_textEdited(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

@@ -460,7 +460,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit"/>
+                <widget class="QLineEdit" name="lineEdit_Bit"/>
                </item>
               </layout>
              </item>
@@ -474,7 +474,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_2"/>
+                <widget class="QLineEdit" name="lineEdit_Int"/>
                </item>
               </layout>
              </item>
@@ -488,7 +488,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_3"/>
+                <widget class="QLineEdit" name="lineEdit_Hex"/>
                </item>
               </layout>
              </item>
@@ -511,10 +511,10 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_4"/>
+                <widget class="QLineEdit" name="lineEdit_CRC_in"/>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_5">
+                <widget class="QLineEdit" name="lineEdit_CRC_out">
                  <property name="maximumSize">
                   <size>
                    <width>80</width>
@@ -530,15 +530,15 @@
                <item>
                 <widget class="QLabel" name="label_13">
                  <property name="text">
-                  <string>累加和：</string>
+                  <string> 累加和：</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_6"/>
+                <widget class="QLineEdit" name="lineEdit_Sum_in"/>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_7">
+                <widget class="QLineEdit" name="lineEdit_Sum_out">
                  <property name="maximumSize">
                   <size>
                    <width>80</width>
@@ -568,7 +568,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_8"/>
+                <widget class="QLineEdit" name="lineEdit_Hex_to_Asiic"/>
                </item>
               </layout>
              </item>
@@ -582,7 +582,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_10"/>
+                <widget class="QLineEdit" name="lineEdit_Asiic_to_Hex"/>
                </item>
               </layout>
              </item>
@@ -605,7 +605,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_9"/>
+                <widget class="QLineEdit" name="lineEdit_Hex_to_Float"/>
                </item>
               </layout>
              </item>
@@ -619,7 +619,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_11"/>
+                <widget class="QLineEdit" name="lineEdit_float_to_Hex"/>
                </item>
               </layout>
              </item>

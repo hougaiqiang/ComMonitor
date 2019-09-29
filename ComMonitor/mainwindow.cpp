@@ -3,7 +3,7 @@
 #include <QFileDialog>
 
 #include "driver/myserial.h"
-
+#include "tools/tools.h"
 
 /*************************************************
 *窗口构造函数
@@ -81,3 +81,80 @@ void MainWindow::on_pushButton_Open_COM_clicked()
 }
 
 
+/********************************************************************
+**10进制输入框编辑动作
+** 参数arg1,为当前的文本
+*********************************************************************/
+void MainWindow::on_lineEdit_Int_textEdited(const QString &arg1)
+{
+    QString str;
+    QString strb;
+    bool OK;
+    long long data = arg1.toLongLong(&OK,10);
+    if(false == OK)
+    {
+        //输入不正确
+        return ;
+    }
+    U64_to_ASIICHEX(data,&str);
+    ui->lineEdit_Hex->setText(str);
+    u64_to_ASIICBit(data,&strb);
+    ui->lineEdit_Bit->setText(strb);
+}
+
+/********************************************************************
+**16进制输入框编辑动作
+** 参数arg1,为当前的文本
+*********************************************************************/
+void MainWindow::on_lineEdit_Hex_textEdited(const QString &arg1)
+{
+    bool OK;
+    QString toInt;
+    QString toBit;
+    char toInt_temp[] = "-9223372036854775808‬";
+    unsigned long long data = arg1.toULongLong(&OK,16);
+    if(OK)
+    {
+        sprintf(toInt_temp,"%lld",data);
+
+    }
+    else if(ASIICHEX_to_int(arg1,&data))
+    {
+        sprintf(toInt_temp,"%lld",data);
+    }
+    else
+    {
+        sprintf(toInt_temp, "0");
+    }
+
+    toInt.append(toInt_temp);
+    ui->lineEdit_Int->setText(toInt);
+    u64_to_ASIICBit(data,&toBit);
+    ui->lineEdit_Bit->setText(toBit);
+}
+
+/********************************************************************
+**二进制输入框编辑动作
+** 参数arg1,为当前的文本
+*********************************************************************/
+void MainWindow::on_lineEdit_Bit_textEdited(const QString &arg1)
+{
+    bool OK;
+    QString toInt;
+    QString toHex;
+    char toInt_temp[] = "-9223372036854775808‬";
+    unsigned long long data = arg1.toULongLong(&OK,2);
+    if(OK)
+    {
+        sprintf(toInt_temp,"%lld",data);
+    }
+    else
+    {
+        ASIICBit_to_int64(arg1, &data);
+        sprintf(toInt_temp,"%lld",data);
+    }
+    toInt.append(toInt_temp);
+    ui->lineEdit_Int->setText(toInt);
+    U64_to_ASIICHEX(data,&toHex);
+    ui->lineEdit_Hex->setText(toHex);
+}
