@@ -19,4 +19,6 @@ bool u64_to_ASIICBit( unsigned long long data, QString *str);
 
 bool ASIICBit_to_int64(QString str, unsigned long long *pdata);
 
+ushort Alg_ModBusCRC16(uchar *  pucFrame,  ushort usLen);
+
 #endif // TOOLS_H

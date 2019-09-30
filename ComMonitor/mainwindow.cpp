@@ -4,6 +4,7 @@
 
 #include "driver/myserial.h"
 #include "tools/tools.h"
+#include <string>
 
 /*************************************************
 *窗口构造函数
@@ -158,3 +159,71 @@ void MainWindow::on_lineEdit_Bit_textEdited(const QString &arg1)
     U64_to_ASIICHEX(data,&toHex);
     ui->lineEdit_Hex->setText(toHex);
 }
+
+/********************************************************************
+**CRC校验输入框编辑动作
+** 参数arg1,为当前的文本
+*********************************************************************/
+void MainWindow::on_lineEdit_CRC_in_textEdited(const QString &arg1)
+{
+    uchar CRCBuff[260]={0};
+    bool OK;
+    ushort CRCResult;
+    QString ShowCRCResult;
+    QStringList HexList = arg1.split(' ', QString::SkipEmptyParts);
+
+    for(int i = 0; i < HexList.count(); i++)
+    {
+        CRCBuff[i] = (uchar)HexList[i].toUShort(&OK,16);
+        if(false == OK)
+        {
+            return ;
+        }
+    }
+    CRCResult = Alg_ModBusCRC16(CRCBuff,HexList.count());
+    U64_to_ASIICHEX((quint64)CRCResult,&ShowCRCResult);
+    ui->lineEdit_CRC_out->setText(ShowCRCResult);
+}
+
+
+/********************************************************************
+**Hex转文本输入框编辑动作
+** 参数arg1,为当前的文本 0x41 -> A
+*********************************************************************/
+void MainWindow::on_lineEdit_Hex_to_Asiic_textEdited(const QString &arg1)
+{
+    QString toASIIC;
+    bool OK;
+    QStringList HexList = arg1.split(' ', QString::SkipEmptyParts);
+    for(int i = 0; i < HexList.count(); i++)
+    {
+        toASIIC.append((char)HexList[i].toUShort(&OK,16));
+        if(false == OK)
+        {
+            return ;
+        }
+    }
+    ui->lineEdit_Asiic_to_Hex->setText(toASIIC);
+}
+
+/********************************************************************
+**文本转Hex输入框编辑动作
+** 参数arg1,为当前的文本 A -> 0x41
+*********************************************************************/
+void MainWindow::on_lineEdit_Asiic_to_Hex_textEdited(const QString &arg1)
+{
+    long long CharTemp;
+    QString toHex;
+    QString toHex_temp;
+    std::string para = arg1.toStdString();
+    for(int i = 0; i < para.size(); i++)
+    {
+        CharTemp = (long long)para[i];
+        U64_to_ASIICHEX(CharTemp, &toHex_temp);
+        toHex = toHex + toHex_temp;
+    }
+    ui->lineEdit_Hex_to_Asiic->setText(toHex);
+}
+
+
+

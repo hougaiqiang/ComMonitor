@@ -28,6 +28,12 @@ private slots:
 
     void on_lineEdit_Bit_textEdited(const QString &arg1);
 
+    void on_lineEdit_CRC_in_textEdited(const QString &arg1);
+
+    void on_lineEdit_Hex_to_Asiic_textEdited(const QString &arg1);
+
+    void on_lineEdit_Asiic_to_Hex_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };

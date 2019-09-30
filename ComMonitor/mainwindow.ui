@@ -402,7 +402,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -517,7 +517,7 @@
                 <widget class="QLineEdit" name="lineEdit_CRC_out">
                  <property name="maximumSize">
                   <size>
-                   <width>80</width>
+                   <width>100</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -541,7 +541,7 @@
                 <widget class="QLineEdit" name="lineEdit_Sum_out">
                  <property name="maximumSize">
                   <size>
-                   <width>80</width>
+                   <width>100</width>
                    <height>16777215</height>
                   </size>
                  </property>
@@ -594,34 +594,71 @@
             <property name="title">
              <string>浮点数转换</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_9">
+            <layout class="QHBoxLayout" name="horizontalLayout_23">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_21">
+              <layout class="QVBoxLayout" name="verticalLayout_9">
                <item>
-                <widget class="QLabel" name="label_16">
-                 <property name="text">
-                  <string>   HEX：</string>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <item>
+                  <widget class="QLabel" name="label_16">
+                   <property name="text">
+                    <string>   HEX：</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_Hex_to_Float"/>
+                 </item>
+                </layout>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_Hex_to_Float"/>
+                <layout class="QHBoxLayout" name="horizontalLayout_22">
+                 <item>
+                  <widget class="QLabel" name="label_17">
+                   <property name="text">
+                    <string>浮点数：</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_float_to_Hex"/>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_22">
-               <item>
-                <widget class="QLabel" name="label_17">
-                 <property name="text">
-                  <string>浮点数：</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="lineEdit_float_to_Hex"/>
-               </item>
-              </layout>
+              <widget class="QGroupBox" name="groupBox_11">
+               <property name="title">
+                <string>解码顺序</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <widget class="QRadioButton" name="radioButton">
+                  <property name="text">
+                   <string>0123</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_2">
+                  <property name="text">
+                   <string>1032</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="radioButton_3">
+                  <property name="text">
+                   <string>3210</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -655,6 +692,9 @@
             <widget class="QRadioButton" name="radioButton_Send_16">
              <property name="text">
               <string>十六进制</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -718,6 +758,9 @@
             <widget class="QRadioButton" name="radioButton_Rcv_16">
              <property name="text">
               <string>十六进制</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>

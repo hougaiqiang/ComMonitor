@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocal name="zeei_v2" version="4.0">
+	<driver name="addr" code="hex" lens="1" type="int">
+		<temp_value>0x01</temp_value>
+		<fun name="function_code" code="hex" lens="1" type="int">
+			<list>
+				<item>
+					<describe>主机读取</describe>
+					<value>0x03</value>
+				</item>
+				<item>
+					<describe>主机写</describe>
+					<value>0x10</value>
+				</item>
+			</list>
+			<Reg name="reg_addr" code="hex" lens="2" type="int">
+				<list>
+					<item>
+						<describe>测量信息</describe>
+						<value>0x1000</value>
+					</item>
+					<item>
+						<describe>标定信息</describe>
+						<value>0x1040</value>
+					</item>
+				</list>
+				
+			</Reg>
+		</fun>
+	</driver>
+</protocal>
