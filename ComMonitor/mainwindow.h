@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 #include <QSerialPort>
+#include <string>
+#include <QFileDialog>
+#include "driver/myserialport.h"
+#include "tools/tools.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,6 +20,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    MySerialPort *serialport;  //声明一个串口类，
 
 private slots:
     void on_actionOpen_triggered();
@@ -33,6 +38,8 @@ private slots:
     void on_lineEdit_Hex_to_Asiic_textEdited(const QString &arg1);
 
     void on_lineEdit_Asiic_to_Hex_textEdited(const QString &arg1);
+
+    void serialreceiveInfo();
 
 private:
     Ui::MainWindow *ui;

@@ -1,24 +1,18 @@
-/*****************************************************************
-*串口配置与打开
-*
-*
-******************************************************************/
+#include "myserialport.h"
+/*
+MySerialPort::MySerialPort()
+{
 
-
-
-#include "myserial.h"
-#include "mainwindow.h"
-
-QSerialPort *serialport = new QSerialPort;
-
+}
+*/
 
 /****************************************************************
 *获取当前串口打开状态
 *
 *****************************************************************/
-bool get_Serial_status()
+bool MySerialPort::get_Serial_status()
 {
-    return serialport->isOpen();
+    return isOpen();
 }
 
 
@@ -28,59 +22,59 @@ bool get_Serial_status()
 *参数：
 *SerialName : 串口名，字符串
 *****************************************************************/
-bool Open_Serial(SERIAL *stSerial)
+bool MySerialPort::Open_Serial(SERIAL *stSerial)
 {
 
-    serialport->setPortName(stSerial->SerialName);
-    serialport->setBaudRate(stSerial->baud);
+    setPortName(stSerial->SerialName);
+    setBaudRate(stSerial->baud);
 
     if("EVEN" == stSerial->Parity)
     {
-        serialport->setParity(QSerialPort::EvenParity);
+        setParity(QSerialPort::EvenParity);
     }
     else if("ODD" == stSerial->Parity)
     {
-        serialport->setParity(QSerialPort::OddParity);
+        setParity(QSerialPort::OddParity);
     }
     else
     {
-        serialport->setParity(QSerialPort::NoParity);
+        setParity(QSerialPort::NoParity);
     }
 
     //设置数据位
     if(5 == stSerial->data)
     {
-         serialport->setDataBits(QSerialPort::Data5);
+        setDataBits(QSerialPort::Data5);
     }
     else if(6 == stSerial->data)
     {
-        serialport->setDataBits(QSerialPort::Data6);
+        setDataBits(QSerialPort::Data6);
     }
     else if(7 == stSerial->data)
     {
-        serialport->setDataBits(QSerialPort::Data7);
+        setDataBits(QSerialPort::Data7);
     }
     else
     {
-        serialport->setDataBits(QSerialPort::Data8);
+        setDataBits(QSerialPort::Data8);
     }
 
     //设置停止位
     if("2" == stSerial->stop)
     {
-        serialport->setStopBits(QSerialPort::TwoStop);
+        setStopBits(QSerialPort::TwoStop);
     }
     else if("1.5" == stSerial->stop)
     {
-        serialport->setStopBits(QSerialPort::OneAndHalfStop);
+        setStopBits(QSerialPort::OneAndHalfStop);
     }
     else
     {
-        serialport->setStopBits(QSerialPort::OneStop);
+        setStopBits(QSerialPort::OneStop);
     }
 
 
-    if(serialport->open(QIODevice::ReadWrite))
+    if(open(QIODevice::ReadWrite))
     {
         //打开成功
         //connect(serialport,SIGNAL(readyRead()),this,SLOT(receiveInfo()));
@@ -96,11 +90,11 @@ bool Open_Serial(SERIAL *stSerial)
 *关闭串口
 *
 *****************************************************************/
-bool close_Serial()
+bool MySerialPort::close_Serial()
 {
-    serialport->clear();
-    serialport->close();
-    if(serialport->isOpen())
+    clear();
+    close();
+    if(isOpen())
     {
         return false;
     }
@@ -114,7 +108,7 @@ bool close_Serial()
 *获取当前可用的设备列表
 *
 *****************************************************************/
-QStringList get_port_Name_list()
+QStringList MySerialPort::get_port_Name_list()
 {
     QStringList ComList;
 
@@ -130,27 +124,15 @@ QStringList get_port_Name_list()
 *发送数据
 *
 *****************************************************************/
-bool Send_by_Serial(const char *data, int len)
+bool MySerialPort::Send_by_Serial(const char *data, int len)
 {
-    if(!serialport->isOpen())
+    if(!isOpen())
     {
         //串口未打开
         return false;
     }
-    serialport->write(data, len);
+    write(data, len);
     return true;
 }
 
-/****************************************************************
-*接收数据
-*串口接收数据完毕自动调用此函数
-*****************************************************************/
-void receiveInfo()
-{
 
-    QByteArray Rcv_Data;
-    Rcv_Data = serialport->readAll();
-    //处理串口数据
-
-
-}

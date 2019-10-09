@@ -1,10 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QFileDialog>
 
-#include "driver/myserial.h"
-#include "tools/tools.h"
-#include <string>
 
 /*************************************************
 *窗口构造函数
@@ -16,13 +12,20 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->comboBox_COM->addItems(get_port_Name_list());  //设置串口列表
-
+    serialport = new MySerialPort();
+    ui->comboBox_COM->addItems(serialport->get_port_Name_list());  //设置串口列表
 }
 
+
+/*************************************************
+*窗口析构函数
+*
+**************************************************/
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    serialport->close_Serial();
 }
 
 /*****************************
@@ -53,11 +56,11 @@ void MainWindow::on_actionOpen_triggered()
 *******************************************************/
 void MainWindow::on_pushButton_Open_COM_clicked()
 {
-    SERIAL stSerial;
+    MySerialPort::SERIAL stSerial;
 
-    if(get_Serial_status())
+    if(serialport->get_Serial_status())
     {
-        close_Serial();
+        serialport->close_Serial();
         ui->pushButton_Open_COM->setText("打开串口");
     }
     else
@@ -68,14 +71,16 @@ void MainWindow::on_pushButton_Open_COM_clicked()
         stSerial.stop = ui->comboBox_Stop->currentText();
         stSerial.Parity = ui->comboBox_Parity->currentText();
 
-        if(Open_Serial(&stSerial))
+        if(serialport->Open_Serial(&stSerial))
         {
             ui->pushButton_Open_COM->setText("关闭串口");
+            connect(serialport,SIGNAL(readyRead()),this,SLOT(serialreceiveInfo()));
         }
         else
         {
             //打开失败
-
+            ui->comboBox_COM->clear();
+            ui->comboBox_COM->addItems(serialport->get_port_Name_list());  //设置串口列表
         }
     }
     return ;
@@ -227,3 +232,16 @@ void MainWindow::on_lineEdit_Asiic_to_Hex_textEdited(const QString &arg1)
 
 
 
+/****************************************************************
+*接收数据
+*串口接收数据完毕自动调用此函数
+*****************************************************************/
+void MainWindow::serialreceiveInfo()
+{
+
+    QByteArray Rcv_Data;
+    Rcv_Data = serialport->readAll();
+    //处理串口数据
+
+
+}
