@@ -23,9 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
 **************************************************/
 MainWindow::~MainWindow()
 {
-    delete ui;
 
     serialport->close_Serial();
+    delete serialport;
+
+    delete ui;
+
 }
 
 /*****************************
@@ -74,13 +77,13 @@ void MainWindow::on_pushButton_Open_COM_clicked()
         if(serialport->Open_Serial(&stSerial))
         {
             ui->pushButton_Open_COM->setText("关闭串口");
-            connect(serialport,SIGNAL(readyRead()),this,SLOT(serialreceiveInfo()));
+            connect(serialport,SIGNAL(readyRead()),this,SLOT(serialreceiveInfo()));  //数据接收完成信号连接槽
         }
         else
         {
             //打开失败
             ui->comboBox_COM->clear();
-            ui->comboBox_COM->addItems(serialport->get_port_Name_list());  //设置串口列表
+            ui->comboBox_COM->addItems(serialport->get_port_Name_list());  //设置更新串口列表
         }
     }
     return ;
@@ -221,7 +224,7 @@ void MainWindow::on_lineEdit_Asiic_to_Hex_textEdited(const QString &arg1)
     QString toHex;
     QString toHex_temp;
     std::string para = arg1.toStdString();
-    for(int i = 0; i < para.size(); i++)
+    for(uint i = 0; i < para.size(); i++)
     {
         CharTemp = (long long)para[i];
         U64_to_ASIICHEX(CharTemp, &toHex_temp);
@@ -244,4 +247,79 @@ void MainWindow::serialreceiveInfo()
     //处理串口数据
 
 
+}
+
+
+/******************************************************
+*点击发送按钮动作
+*
+*******************************************************/
+void MainWindow::on_pushButton_Send_clicked()
+{
+    QString SendString;
+    SendString = ui->plainTextEdit_Send->toPlainText();
+    //ui->plainTextEdit_Rcv->setPlainText(SendString);
+    /*
+     * 检查格式是否有错误
+     * 无错误写入文件
+     * 检查模式，
+     * 转换为字节码
+     * 发送
+     */
+
+}
+
+/******************************************************
+*点击升级浏览文件按钮
+*获取文件路径和文件名填入
+*******************************************************/
+void MainWindow::on_pushButton_Find_bin_clicked()
+{
+    QString curPath=QDir::currentPath();//获取系统当前目录
+    QString dlgTitle="打开升级包"; //对话框标题
+    QString filter="字节文件(*.bin)"; //文件过滤器
+    QString aFileName=QFileDialog::getOpenFileName(this,dlgTitle,curPath,filter);
+    if (aFileName.isEmpty())
+    {
+        return;
+    }
+    else
+    {
+        ui->lineEdit_File_bin->setText(aFileName);
+    }
+}
+
+/******************************************************
+*点击开始升级按钮
+*获取文件路径和文件名打开文件
+* 分包处理
+* 发送
+* 显示进度
+*******************************************************/
+void MainWindow::on_pushButton_Start_Download_clicked()
+{
+    if(!serialport->get_Serial_status())
+    {
+        //请先连接串口
+        return;
+
+    }
+}
+
+/******************************************************
+*点击获取程序地址
+*获取当前程序运行地址区
+*******************************************************/
+void MainWindow::on_pushButton_Get_Program_clicked()
+{
+    //disconnect(serialport,SIGNAL(readyRead()),this,SLOT(serialreceiveInfo()));  //数据接收完成信号连接槽
+    //通过串口发送指令获取程序运行地址
+    /*
+    serialport->Send_by_Serial();
+    if(!serialport->waitForReadyRead(5000))
+    {
+        //升级失败
+    }
+    serialport->readAll();
+    */
 }

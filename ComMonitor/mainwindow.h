@@ -41,6 +41,14 @@ private slots:
 
     void serialreceiveInfo();
 
+    void on_pushButton_Send_clicked();
+
+    void on_pushButton_Find_bin_clicked();
+
+    void on_pushButton_Start_Download_clicked();
+
+    void on_pushButton_Get_Program_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
