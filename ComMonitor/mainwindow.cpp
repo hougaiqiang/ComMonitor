@@ -302,8 +302,15 @@ void MainWindow::on_pushButton_Start_Download_clicked()
     {
         //请先连接串口
         return;
-
     }
+
+    if(".bin" != ui->lineEdit_File_bin->text().right(4))
+    {
+        //请选择正确的文件
+        return;
+    }
+
+
 }
 
 /******************************************************
