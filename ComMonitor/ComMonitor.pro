@@ -27,12 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     tools/tools.cpp \
-    driver/myserialport.cpp
+    driver/myserialport.cpp \
+    upgrade.cpp
 
 HEADERS += \
         mainwindow.h \
     tools/tools.h \
-    driver/myserialport.h
+    driver/myserialport.h \
+    upgrade.h
 
 FORMS += \
         mainwindow.ui
