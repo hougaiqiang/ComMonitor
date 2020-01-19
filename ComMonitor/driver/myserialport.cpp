@@ -136,3 +136,23 @@ bool MySerialPort::Send_by_Serial(const char *data, int len)
 }
 
 
+bool MySerialPort::Send_And_Wait_Rcv(unsigned char *data, int SendLens, unsigned char *RcvData, int *RcvLens)
+{
+    QByteArray RcvBuff;
+    if((NULL == data)||(NULL == RcvData))
+    {
+        return false;
+    }
+    write((char *)data, SendLens);
+    while(!waitForReadyRead())
+    {
+        //usleep(20);
+    }
+    RcvBuff = readAll();
+    //RcvData == RcvBuff.data();
+    memcpy(RcvData, RcvBuff.data(), RcvBuff.size());
+    *RcvLens = RcvBuff.size();
+    return true;
+}
+
+

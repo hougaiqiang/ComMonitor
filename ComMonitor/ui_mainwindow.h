@@ -169,6 +169,7 @@ public:
     QMenu *menufile;
     QMenu *menuEdit;
     QMenu *menuAbout;
+    QMenu *menu;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -793,6 +794,8 @@ public:
         menuEdit->setObjectName(QStringLiteral("menuEdit"));
         menuAbout = new QMenu(menuBar);
         menuAbout->setObjectName(QStringLiteral("menuAbout"));
+        menu = new QMenu(menuBar);
+        menu->setObjectName(QStringLiteral("menu"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -804,6 +807,7 @@ public:
         menuBar->addAction(menufile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
         menuBar->addAction(menuAbout->menuAction());
+        menuBar->addAction(menu->menuAction());
         menufile->addAction(actionOpen);
         menufile->addAction(actionsaver);
         menufile->addAction(actionSave_as);
@@ -819,7 +823,7 @@ public:
         retranslateUi(MainWindow);
 
         comboBox_Baud->setCurrentIndex(3);
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -928,6 +932,7 @@ public:
         menufile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", Q_NULLPTR));
         menuAbout->setTitle(QApplication::translate("MainWindow", "About", Q_NULLPTR));
+        menu->setTitle(QApplication::translate("MainWindow", "\345\205\263\344\272\216\344\270\255\345\205\264", Q_NULLPTR));
     } // retranslateUi
 
 };

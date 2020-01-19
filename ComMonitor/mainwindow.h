@@ -5,6 +5,7 @@
 #include <QSerialPort>
 #include <string>
 #include <QFileDialog>
+#include <windows.h>
 #include "driver/myserialport.h"
 #include "tools/tools.h"
 
@@ -48,6 +49,8 @@ private slots:
     void on_pushButton_Start_Download_clicked();
 
     void on_pushButton_Get_Program_clicked();
+
+    void on_pushButton_Monitor_COM_clicked();
 
 private:
     Ui::MainWindow *ui;

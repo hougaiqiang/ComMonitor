@@ -330,3 +330,14 @@ void MainWindow::on_pushButton_Get_Program_clicked()
     serialport->readAll();
     */
 }
+
+
+/*************************************************************************
+** 监控按钮响应事件
+** 注册钩子函数SetWindowsHookEx
+**
+**************************************************************************/
+void MainWindow::on_pushButton_Monitor_COM_clicked()
+{
+    //SetWindowsHookEx();
+}

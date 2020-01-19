@@ -24,6 +24,7 @@ public:
     bool get_Serial_status();
     bool close_Serial();
     bool Send_by_Serial(const char *data, int len);
+    bool Send_And_Wait_Rcv(unsigned char *data, int SendLens, unsigned char *RcvData, int *RcvLens);
     //void receiveInfo();
 
 
